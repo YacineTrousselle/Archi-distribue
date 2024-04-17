@@ -1,0 +1,5 @@
+setuptools
+wheel
+spacy
+fuzzywuzzy
+python-Levenshtein
