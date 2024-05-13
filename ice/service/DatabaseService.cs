@@ -40,6 +40,21 @@ public class DatabaseService
         return song.Id;
     }
 
+    public void SaveSong(string songId, byte[] data)
+    {
+        Console.WriteLine(Path.Join(Program.SongPath, $"{songId}.mp3") + " created");
+
+        var file = File.Create(Path.Join(Program.SongPath, $"{songId}.mp3"));
+        file.Write(data);
+        file.Flush();
+        file.Close();
+    }
+
+    public byte[] GetSongData(string songId)
+    {
+        return File.ReadAllBytes(Path.Join(Program.SongPath, $"{songId}.mp3"));
+    }
+    
     public Song? FindSongById(string songId)
     {
         var filter = Builders<Song>.Filter.Eq("_id", ObjectId.Parse(songId));

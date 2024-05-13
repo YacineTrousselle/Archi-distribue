@@ -37,7 +37,10 @@ public class AudioPlayerI : AudioPlayerDisp_
         var media = new Media(_libVlc, Path.Join(Program.SongPath, $"{songId}.{Extensions.AudioExt}"));
         media.AddOption($"--sout '#rtp{{sdp={rtspUrl}}}'");
         mediaPlayer.Media = media;
+        mediaPlayer.Play();
     
+        Console.WriteLine("New player for " + songId + ", url: " + rtspUrl);
+
         return rtspUrl;
     }
 

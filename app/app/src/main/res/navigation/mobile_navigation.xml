@@ -12,14 +12,35 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="fr.frcsbcn.soup.ui.search.SearchFragment"
-        android:label="@string/menu_search"
-        tools:layout="@layout/fragment_search" />
+        android:id="@+id/nav_result"
+        android:name="fr.frcsbcn.soup.ui.search.ResultFragment"
+        android:label="@string/menu_result"
+        tools:layout="@layout/fragment_result">
+    </fragment>
+    <action
+        app:destination="@+id/nav_player"
+        android:id="@+id/result_to_player"
+        />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_search"
+        android:name="fr.frcsbcn.soup.ui.search.SearchFragment"
+        android:label="@string/menu_search"
+        tools:layout="@layout/fragment_search">
+    </fragment>
+    <action
+        android:id="@+id/search_to_result_fragment"
+        app:destination="@+id/nav_result" />
+
+    <fragment
+        android:id="@+id/nav_upload"
         android:name="fr.frcsbcn.soup.ui.upload.UploadFragment"
         android:label="@string/menu_upload"
         tools:layout="@layout/fragment_upload" />
+
+    <fragment
+        android:id="@+id/nav_player"
+        android:name="fr.frcsbcn.soup.ui.player.PlayerFragment"
+        android:label="@string/menu_player"
+        tools:layout="@layout/fragment_player" />
 </navigation>

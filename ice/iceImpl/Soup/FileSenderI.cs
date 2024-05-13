@@ -18,7 +18,7 @@ public class FileSenderI : FileSenderDisp_
     {
         Song? song = _databaseService.FindSongById(songId);
         ArgumentNullException.ThrowIfNull(song);
-        byte[] data = File.ReadAllBytes(Path.Join(Program.SongPath, $"{songId}.mp3"));
+        byte[] data = _databaseService.GetSongData(songId);
 
         return new SongData
         {
@@ -30,7 +30,7 @@ public class FileSenderI : FileSenderDisp_
 
     public override byte[] getChunk(string songId, int pos, Current current = null)
     {
-        byte[] data = File.ReadAllBytes(Path.Join(Program.SongPath, $"{songId}.mp3"));
+        byte[] data = _databaseService.GetSongData(songId);
         int offset = pos * ChunkSize.value;
 
         return data.Slice(offset, Math.Min(ChunkSize.value, data.Length - offset));

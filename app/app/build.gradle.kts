@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    id("com.zeroc.gradle.ice-builder.slice") version("1.5.0")
 }
 
 android {
@@ -35,6 +36,12 @@ android {
 }
 
 dependencies {
+    implementation(libs.libvlc.all)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    implementation(libs.ice)
 
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -43,6 +50,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.legacy.support.v4)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

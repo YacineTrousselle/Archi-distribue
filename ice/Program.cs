@@ -1,4 +1,6 @@
-﻿using FirstServer.iceImpl.Soup;
+﻿using System.Net;
+using System.Net.Sockets;
+using FirstServer.iceImpl.Soup;
 using FirstServer.service;
 using Ice;
 using LibVLCSharp.Shared;
@@ -24,11 +26,18 @@ public class ApplicationI : Application
             Core.Initialize();
             using (Communicator communicator = Application.communicator())
             {
-                var adapter = communicator.createObjectAdapterWithEndpoints("SoupAdapter", "default -h localhost -p 10000");  
+                string ipAddress = Dns.GetHostEntry(Dns.GetHostName())
+                    .AddressList.FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork)
+                    .ToString();
+                Console.WriteLine("Ip: " + ipAddress);
 
-                _client.setDatabase(communicator.getProperties().getProperty("SoupAdapter.AdapterId"));
+                var adapter =
+                    communicator.createObjectAdapterWithEndpoints("SoupAdapter", "default -h 127.0.0.1 -p 10000");
+
+                _client.setDatabase("songs");
                 InitSoup(adapter, _client);
                 adapter.activate();
+                
                 Console.Out.WriteLine("Server is running...");
                 communicator.waitForShutdown();
             }
@@ -36,6 +45,7 @@ public class ApplicationI : Application
         catch (Exception e)
         {
             Console.Error.WriteLine(e);
+
             return 1;
         }
 
@@ -48,6 +58,8 @@ public class ApplicationI : Application
         adapter.add(new FileSenderI(databaseService), Util.stringToIdentity("Soup.FileSender"));
         adapter.add(new SongDataModuleI(databaseService), Util.stringToIdentity("Soup.SongDataModule"));
         adapter.add(new AudioPlayerI(databaseService), Util.stringToIdentity("Soup.AudioPlayer"));
+
+        
     }
 }
 

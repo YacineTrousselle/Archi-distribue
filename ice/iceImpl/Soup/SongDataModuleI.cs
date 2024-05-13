@@ -18,6 +18,8 @@ public class SongDataModuleI: SongDataModuleDisp_
     
     public override SongData[] searchByTitle(string search, Current current = null)
     {
+        Console.WriteLine("Search by title: " + search);
+        
         var filter = Builders<Song>.Filter.Regex("Title", new BsonRegularExpression(search, "i"));
         var songs = _databaseService.GetSongCollection().Find(filter).ToList();
         var songDataList = new List<SongData>();

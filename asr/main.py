@@ -1,9 +1,12 @@
+from fastapi import FastAPI, UploadFile, File
+from pydantic import BaseModel
+
 from audio_processor import AudioProcessor
 
-if __name__ == '__main__':
-    audio_processor = AudioProcessor()
-    with open('test.wav', 'rb') as audio_file:
-        sample = audio_file.read()
-    response = audio_processor.process(sample)
+app = FastAPI()
+audio_processor = AudioProcessor()
 
-    print(response)
+
+@app.post('/speech-to-text')
+def speech_to_text(data: bytes):
+    return audio_processor.process(data)

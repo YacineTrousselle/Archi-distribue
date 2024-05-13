@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  nlp:
+    build:
+      context: ./nlp
+      dockerfile: ./Dockerfile
+    ports:
+      - '8010:80'
+
+  asr:
+    build:
+      context: ./asr
+      dockerfile: ./Dockerfile
+    ports:
+      - '8020:80'
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongo-soup:/data/db
+    ports:
+      - '27010:27017'
+    restart: always
+
+volumes:
+  mongo-soup:

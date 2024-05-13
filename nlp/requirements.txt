@@ -3,3 +3,6 @@ wheel
 spacy
 fuzzywuzzy
 python-Levenshtein
+fastapi
+pydantic
+pymongo

@@ -45,13 +45,8 @@ public class FileUploaderI : FileUploaderDisp_
 
         byte[] data = ConvertDictionaryToArray(_files[uniqueId]);
 
-        Console.WriteLine(Path.Join(Program.SongPath, $"{uniqueId}.mp3") + " created");
-
-        var file = File.Create(Path.Join(Program.SongPath, $"{uniqueId}.mp3"));
-        file.Write(data);
-        file.Flush();
-        file.Close();
-
+        _databaseService.SaveSong(uniqueId, data);
+        
         _files.Remove(uniqueId);
     }
 

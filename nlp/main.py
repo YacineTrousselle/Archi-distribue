@@ -1,5 +1,17 @@
-import spacy_processor
+from fastapi import FastAPI
+from pydantic import BaseModel
 
-if __name__ == '__main__':
-    nlp = test_spacy.SpacyProcessor()
-    print(nlp.process(""))
+from spacy_processor import SpacyProcessor
+
+
+class Processed(BaseModel):
+    action: str
+    song_scores: list | None = None
+
+app = FastAPI()
+nlp = SpacyProcessor()
+
+
+@app.get("/process")
+def process(data: str) -> Processed:
+    return nlp.process(data)
