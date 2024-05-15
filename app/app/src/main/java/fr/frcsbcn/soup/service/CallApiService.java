@@ -70,13 +70,14 @@ public class CallApiService {
                     break;
                 case "up":
                     Log.d("SOUP", "callApi: up");
-                    log = "Monter le son";
-                    audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+                    log = "Increase volume";
+                    audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
                     break;
                 case "down":
                     Log.d("SOUP", "callApi: down");
-                    log = "Baisser le son";
-                    audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+                    log = "Decrease volume";
+                    audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
+                    audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
                     break;
             }
 

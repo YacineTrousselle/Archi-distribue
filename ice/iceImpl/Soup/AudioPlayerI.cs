@@ -24,7 +24,7 @@ public class AudioPlayerI : AudioPlayerDisp_
     {
         ArgumentNullException.ThrowIfNull(_databaseService.FindSongById(songId));
         
-        var rtspUrl = $"rtsp://0.0.0.0:8554/audio-{_id++}.sdp";
+        var rtspUrl = $"rtsp://127.0.0.1:8556/audio-{_id++}.sdp";
         MediaPlayer? mediaPlayer;
         if (!mediaPlayers.ContainsKey(rtspUrl))
         {

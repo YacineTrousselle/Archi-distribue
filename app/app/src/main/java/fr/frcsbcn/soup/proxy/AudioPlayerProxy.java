@@ -31,7 +31,7 @@ public class AudioPlayerProxy extends AbstractProxy {
 
             LibVLC libVLC = new LibVLC(context);
             player = new MediaPlayer(libVLC);
-            Media media = new Media(libVLC, Uri.parse(rtspUrl.replace("0.0.0.0", "10.0.2.2")));
+            Media media = new Media(libVLC, Uri.parse(rtspUrl.replace("127.0.0.1", "10.0.2.2")));
             player.setMedia(media);
 
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class AudioPlayerProxy extends AbstractProxy {
                 audioPlayerPrx.play(rtspUrl);
             }
         } catch (Exception e) {
-            Log.e("ICE","ice error: " + e.getMessage());
+            Log.e("ICE", "ice error: " + e.getMessage());
         }
     }
 
@@ -60,7 +60,7 @@ public class AudioPlayerProxy extends AbstractProxy {
             AudioPlayerPrx audioPlayerPrx = AudioPlayerPrx.checkedCast(base);
             audioPlayerPrx.play(rtspUrl);
         } catch (Exception e) {
-            Log.e("ICE","ice error: " + e.getMessage());
+            Log.e("ICE", "ice error: " + e.getMessage());
         }
     }
 
@@ -70,7 +70,7 @@ public class AudioPlayerProxy extends AbstractProxy {
             AudioPlayerPrx audioPlayerPrx = AudioPlayerPrx.checkedCast(base);
             audioPlayerPrx.pause(rtspUrl);
         } catch (Exception e) {
-            Log.e("ICE","ice error: " + e.getMessage());
+            Log.e("ICE", "ice error: " + e.getMessage());
         }
     }
 
@@ -81,7 +81,7 @@ public class AudioPlayerProxy extends AbstractProxy {
             AudioPlayerPrx audioPlayerPrx = AudioPlayerPrx.checkedCast(base);
             audioPlayerPrx.close(rtspUrl);
         } catch (Exception e) {
-            Log.e("ICE","ice error: " + e.getMessage());
+            Log.e("ICE", "ice error: " + e.getMessage());
         }
     }
 
