@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
+from typing import Annotated
 
 from audio_processor import AudioProcessor
 
@@ -8,5 +9,9 @@ audio_processor = AudioProcessor()
 
 
 @app.post('/speech-to-text')
-def speech_to_text(data: bytes):
-    return audio_processor.process(data)
+async def speech_to_text(audio: Annotated[bytes, File()]):
+
+    response = audio_processor.process(audio)
+    print(response)
+
+    return response["text"]

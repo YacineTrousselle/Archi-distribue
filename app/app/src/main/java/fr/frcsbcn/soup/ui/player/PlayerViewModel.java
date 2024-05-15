@@ -23,6 +23,18 @@ public class PlayerViewModel extends ViewModel {
         return audioPlayerProxy.getValue();
     }
 
+    public void play() {
+        if (null != audioPlayerProxy.getValue()) {
+            audioPlayerProxy.getValue().getPlayer().play();
+        }
+    }
+
+    public void pause() {
+        if (null != audioPlayerProxy.getValue()) {
+            audioPlayerProxy.getValue().getPlayer().pause();
+        }
+    }
+
     public void clear() {
         if (audioPlayerProxy.getValue() != null) {
             audioPlayerProxy.getValue().close();

@@ -8,13 +8,6 @@ services:
     ports:
       - '8010:80'
 
-  asr:
-    build:
-      context: ./asr
-      dockerfile: ./Dockerfile
-    ports:
-      - '8020:80'
-
   mongo:
     image: mongo:latest
     volumes:

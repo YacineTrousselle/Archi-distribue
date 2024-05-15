@@ -5,9 +5,9 @@ from pymongo import MongoClient
 
 class SpacyProcessor:
     actions = {
-        'play': ['jou', 'écout', 'lanc'],
+        'play': ['jou', 'lanc', 'remett'],
         'pause': ['arrêt', 'stopp'],
-        'search': ['cherch', 'recherch', 'trouv'],
+        'search': ['cherch', 'recherch', 'écout', 'trouv'],
         'up': ['mont'],
         'down': ['bais', 'rédui'],
     }
@@ -28,10 +28,9 @@ class SpacyProcessor:
         doc = self.nlp(text.lower())
 
         verbs = list(filter(lambda token: token.pos_ == 'VERB' or token.text.startswith('baiss'), doc))
-        print(verbs)
         action = self.get_action(verbs)
 
-        return {'action': action, 'song_scores': self.get_song(doc) if action == 'play' or action == 'search' else None}
+        return {'action': action, 'song_scores': self.get_song(doc) if action == 'search' else None}
 
     def get_action(self, verbs):
         for verb in verbs:

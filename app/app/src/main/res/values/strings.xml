@@ -17,4 +17,5 @@
     <string name="search">Search</string>
     <string name="search_a_song">Search a song...</string>
     <string name="menu_result">Result</string>
+    <string name="speaker">Speaker</string>
 </resources>
