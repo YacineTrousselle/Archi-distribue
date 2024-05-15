@@ -58,8 +58,6 @@ public class ApplicationI : Application
         adapter.add(new FileSenderI(databaseService), Util.stringToIdentity("Soup.FileSender"));
         adapter.add(new SongDataModuleI(databaseService), Util.stringToIdentity("Soup.SongDataModule"));
         adapter.add(new AudioPlayerI(databaseService), Util.stringToIdentity("Soup.AudioPlayer"));
-
-        
     }
 }
 

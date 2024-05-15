@@ -40,5 +40,5 @@ class SpacyProcessor:
         return 'unknown'
 
     def get_song(self, text):
-        return sorted([(song, fuzz.partial_ratio(text, song['Title'])) for song in self.get_songs()],
+        return sorted([(song['id'], fuzz.partial_ratio(text, song['Title'])) for song in self.get_songs()],
                       key=lambda x: x[1], reverse=True)

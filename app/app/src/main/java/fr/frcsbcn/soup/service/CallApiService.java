@@ -1,7 +1,6 @@
 package fr.frcsbcn.soup.service;
 
 import android.app.Activity;
-import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,7 +40,7 @@ public class CallApiService {
                 throw new IOException("Error occured when NLP API was called");
             }
 
-            String log = "Action non reconnue";
+            String log = "Unknown action";
             switch (response.action) {
                 case "play":
                     Log.d("SOUP", "callApi: play");
@@ -55,13 +54,19 @@ public class CallApiService {
                     break;
                 case "search":
                     Log.d("SOUP", "callApi: search");
-                    Log.d("SOUP", "callApi: " + response.song_scores.get(0));
+                    if (null == response.song_scores || null == response.song_scores.get(0)) {
+                        log = "No music found";
+                        Log.d("SOUP", "callApi: No music found");
+                        break;
+                    }
+                    Log.d("SOUP", "callApi: " + response.song_scores.get(0)[0]);
+
                     log = "Search music";
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("id", response.song_scores.get(0));
-//                    Navigation
-//                            .findNavController(activity, R.id.nav_home)
-//                            .navigate(R.id.nav_player, bundle);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", (String) response.song_scores.get(0)[0]);
+                    Navigation
+                            .findNavController(activity, R.id.nav_host_fragment_content_main)
+                            .navigate(R.id.nav_player, bundle);
                     break;
                 case "up":
                     Log.d("SOUP", "callApi: up");

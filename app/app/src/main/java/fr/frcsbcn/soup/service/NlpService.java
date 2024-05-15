@@ -1,9 +1,7 @@
 package fr.frcsbcn.soup.service;
 
-import androidx.annotation.NonNull;
-
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -38,13 +36,7 @@ public class NlpService {
 
     public static class NlpResponse {
         public String action = "unknown";
-        public ArrayList<ArrayList<Object>> song_scores;
-
-        @NonNull
-        @Override
-        public String toString() {
-            return "NlpResponse{" + "action='" + action + "', song_scores=" + song_scores + '}';
-        }
+        public List<Object[]> song_scores;
     }
 }
 

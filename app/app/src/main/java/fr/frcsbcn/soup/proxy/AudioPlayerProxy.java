@@ -50,7 +50,27 @@ public class AudioPlayerProxy extends AbstractProxy {
                 audioPlayerPrx.play(rtspUrl);
             }
         } catch (Exception e) {
-            Log.e("ICE", e.getMessage());
+            Log.e("ICE","ice error: " + e.getMessage());
+        }
+    }
+
+    public void play() {
+        try {
+            ObjectPrx base = getBaseProxy(PROXY_NAME);
+            AudioPlayerPrx audioPlayerPrx = AudioPlayerPrx.checkedCast(base);
+            audioPlayerPrx.play(rtspUrl);
+        } catch (Exception e) {
+            Log.e("ICE","ice error: " + e.getMessage());
+        }
+    }
+
+    public void pause() {
+        try {
+            ObjectPrx base = getBaseProxy(PROXY_NAME);
+            AudioPlayerPrx audioPlayerPrx = AudioPlayerPrx.checkedCast(base);
+            audioPlayerPrx.pause(rtspUrl);
+        } catch (Exception e) {
+            Log.e("ICE","ice error: " + e.getMessage());
         }
     }
 
@@ -61,7 +81,7 @@ public class AudioPlayerProxy extends AbstractProxy {
             AudioPlayerPrx audioPlayerPrx = AudioPlayerPrx.checkedCast(base);
             audioPlayerPrx.close(rtspUrl);
         } catch (Exception e) {
-            Log.e("ICE", e.getMessage());
+            Log.e("ICE","ice error: " + e.getMessage());
         }
     }
 

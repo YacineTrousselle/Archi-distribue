@@ -1,6 +1,7 @@
 package fr.frcsbcn.soup.ui.player;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -24,14 +25,16 @@ public class PlayerViewModel extends ViewModel {
     }
 
     public void play() {
+        Log.d("SOUP", "play + " + (null != audioPlayerProxy.getValue()));
         if (null != audioPlayerProxy.getValue()) {
-            audioPlayerProxy.getValue().getPlayer().play();
+            audioPlayerProxy.getValue().play();
         }
     }
 
     public void pause() {
+        Log.d("SOUP", "pause + " + (null != audioPlayerProxy.getValue()));
         if (null != audioPlayerProxy.getValue()) {
-            audioPlayerProxy.getValue().getPlayer().pause();
+            audioPlayerProxy.getValue().pause();
         }
     }
 
